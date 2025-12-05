@@ -1,5 +1,8 @@
-/logs
-/data
-
-resources/Mus_musculus.GRCm39.dna.primary_assembly.fa
-resources/Mus_musculus.GRCm39.115.gtf.gz
+# Slurm output and error logs; large, temporary, and not needed in git
+logs/
+# Raw or intermediate data; large
+data/
+# Output files from mapping; generated files, can be recreated
+results/
+# Reference genome FASTA; large file, can be downloaded separately
+resources/
