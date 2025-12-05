@@ -13,12 +13,13 @@
 # Load the required module
 module load MultiQC/1.11-foss-2021a
 
+WORKDIR="/data/users/awolfruiz/rna_seq/blood-mice-toxoplasma-2025"
 
-# Directory containing the FASTQC files
-FASTQC_OUTPUT="/data/users/awolfruiz/rna_seq/blood-mice-toxoplasma-2025/data/external_data/fastqc_output"
+# Directory containing the FeatureCounts summary
+SUMMARY_FILE="$WORKDIR/results/featureCounts/gene_counts.txt.summary"
 
 # Directory where MultiQC will save the output
-MULTIQC_OUTPUT="/data/users/awolfruiz/rna_seq/blood-mice-toxoplasma-2025/results/multiqc"
+OUTPUT_DIR_MULTIQC="$WORKDIR/results/multiqc"
 
 # Create the output directory (if it doesn't exist already)
 mkdir -p "/data/users/awolfruiz/rna_seq/blood-mice-toxoplasma-2025/results/multiqc"
@@ -26,4 +27,4 @@ mkdir -p "/data/users/awolfruiz/rna_seq/blood-mice-toxoplasma-2025/results/multi
 # Run multiqc
 #------------------------------
 # --outdir indicates where the output will be saved
-multiqc "$FASTQC_OUTPUT" --outdir "$MULTIQC_OUTPUT"
+multiqc --outdir "$OUTPUT_DIR_MULTIQC" "$SUMMARY_FILE"

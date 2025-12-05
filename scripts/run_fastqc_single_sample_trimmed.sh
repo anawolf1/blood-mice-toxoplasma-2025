@@ -11,10 +11,10 @@
 #SBATCH --partition=pibu_el8
 
 # DIR is the directory where the blood samples FASTQ are located.
-DIR="/data/courses/rnaseq_course/toxoplasma_de/reads_Blood/"
+DIR="/data/users/awolfruiz/rna_seq/blood-mice-toxoplasma-2025/data/external_data/fastp_output/"
 
 # OUTPUT_DIR is where FastQC will save its reports for this job
-OUTPUT_DIR="/data/users/awolfruiz/rna_seq/blood-mice-toxoplasma-2025/data/external_data/fastqc_output/"
+OUTPUT_DIR="/data/users/awolfruiz/rna_seq/blood-mice-toxoplasma-2025/data/external_data/fastqc_trimmed_output/"
 
 # Load FASTQC module
 module load FastQC/0.11.9-Java-11
@@ -25,4 +25,6 @@ module load FastQC/0.11.9-Java-11
 # -o $OUTPUT_DIR: save output files to the output directory
 # "$FILE": the FASTQ file to analyze
 
-fastqc --threads $SLURM_CPUS_PER_TASK -o $OUTPUT_DIR "$FILE"
+echo "DB: $FILE"
+
+fastqc --threads $SLURM_CPUS_PER_TASK -o "$OUTPUT_DIR" "$FILE"
