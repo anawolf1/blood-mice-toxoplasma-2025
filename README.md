@@ -1,11 +1,21 @@
 # blood-mice-toxoplasma-2025
 
-## Overview
+## Project overview
 The aim of this study is to investigate how interferon α/γ receptor deficiency alters the systemic transcriptional response to *Toxoplasma gondii* infection in mice. By analyzing blood RNA-seq data from wildtype (WT) and double-knockout (dKO) mice under infected and uninfected conditions, we use a two-factor experimental design to examine the effects of genotype, infection, and their interaction.
  
 The dataset used is a subset of blood samples from [Singhania et al. (2019)](https://www.nature.com/articles/s41467-019-10601-6), available on GEO (accession [GSE119855](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE119855)). Libraries are paired-end, strand-specific, and sequenced on Illumina HiSeq 4000.
 
 The first part of the workflow is performed using the IBU cluster of the University of Bern. The scripts ran in the cluster are in the folder [scripts](https://github.com/anawolf1/blood-mice-toxoplasma-2025/tree/main/scripts). The final part of the workflow (differential expression analysis) was executed locally in R, with a single [script](https://github.com/anawolf1/blood-mice-toxoplasma-2025/blob/main/rnaseq.R), found in the main folder of the repository.
+
+### Workflow overview
+1. Obtain FASTQ files from GEO (GSE119855) or use the copies provided on the IBU cluster (/data/courses/rnaseq_course/toxoplasma_de).
+2. Run the preprocessing and alignment scripts in `scripts/` using Slurm, following the numerical order of the scripts (quality control, read mapping, and gene-level quantification)..
+3. Download the resulting gene count matrix and run rnaseq.R locally to perform exploratory analysis, differential expression analysis, and GO overrepresentation analysis.
+
+### Setup and usage:
+- Update the path of the working directories in all `.sh` and `.R` scripts before running.
+- Adjust Slurm `#SBATCH` directives in `.sh` scripts according to your job’s CPU, memory, and time needs. Recommended defaults are provided in each script.
+- Optional step: IGV inspection of BAM files.
 
 ## Project Structure (IBU cluster)
 ```
@@ -24,6 +34,7 @@ rna_seq/blood-mice-toxoplasma-2025
 ├─ .gitignore             
 ├─ README.md
 ```
+
 ## Tools
 ### IBU cluster tools
 
@@ -37,6 +48,7 @@ rna_seq/blood-mice-toxoplasma-2025
 | MultiQC           | 1.11 (Module)                   | Aggregation of QC reports      |
 
 ### R (local computer) tools 
+R analyses were performed using 2025.09.1+401 on macOS/Linux.
 
 | Package / Library | Version | Purpose                                                |
 |-------------------|---------|--------------------------------------------------------|
