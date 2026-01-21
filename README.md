@@ -10,7 +10,7 @@ The first part of the workflow is performed using the IBU cluster of the Univers
 ### Workflow overview
 1. Obtain FASTQ files from GEO (GSE119855) or use the copies provided on the IBU cluster (/data/courses/rnaseq_course/toxoplasma_de).
 2. Run the preprocessing and alignment scripts in `scripts/` using Slurm, following the numerical order of the scripts (quality control, read mapping, and gene-level quantification)..
-3. Download the resulting gene count matrix and run rnaseq.R locally to perform exploratory analysis, differential expression analysis, and GO overrepresentation analysis.
+3. Download the resulting gene count matrix and run rnaseq.R locally using the count matrix and the [sample metadata file](https://github.com/anawolf1/blood-mice-toxoplasma-2025/blob/main/metadata.txt)to perform exploratory analysis, differential expression analysis, and GO overrepresentation analysis.
 
 ### Setup and usage:
 - Update the path of the working directories in all `.sh` and `.R` scripts before running.
